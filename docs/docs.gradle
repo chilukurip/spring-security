@@ -1,5 +1,6 @@
 	// Docbook and Javadoc building and uploading tasks
 apply plugin: 'base'
+apply from: "$rootDir/gradle/deploy-docs.gradle"
 
 task docs {
 	dependsOn 'manual:reference', 'apidocs', 'guides:asciidoctor'

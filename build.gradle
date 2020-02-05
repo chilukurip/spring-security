@@ -13,6 +13,7 @@ buildscript {
 		classpath("io.spring.gradle:docbook-reference-plugin:0.3.1")
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.19.RELEASE")
 		classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.12.0"
+		classpath 'org.hidetake:gradle-ssh-plugin:2.10.1'
 	}
 }
 
