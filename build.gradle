@@ -12,6 +12,7 @@ buildscript {
 		classpath('org.asciidoctor:asciidoctor-gradle-plugin:1.5.1')
 		classpath("io.spring.gradle:docbook-reference-plugin:0.3.1")
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.19.RELEASE")
+		classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.12.0"
 	}
 }
 
@@ -86,7 +87,6 @@ configure(allprojects - javaProjects) {
 }
 
 configure(subprojects - coreModuleProjects - project(':spring-security-samples-javaconfig-messages') - project(':spring-security-bom')) {
-	tasks.findByPath("artifactoryPublish")?.enabled = false
 	sonarqube {
 		skipProject = true
 	}
@@ -136,6 +136,10 @@ configure(coreModuleProjects) {
 	integrationTest {
 		jvmArgs "-javaagent:${configurations.jacoco.asPath}=destfile=${buildDir}/jacoco.exec,includes=${project.group}.*"
 	}
+}
+
+configure (coreModuleProjects + project(":spring-security-bom")) {
+	apply from: "$rootDir/gradle/artifactory.gradle"
 }
 
 configure (aspectjProjects) {
