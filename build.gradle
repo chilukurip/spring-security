@@ -141,6 +141,7 @@ configure(coreModuleProjects) {
 
 configure (coreModuleProjects + project(":spring-security-bom")) {
 	apply from: "$rootDir/gradle/artifactory.gradle"
+	apply from: "$rootDir/gradle/deploy-artifacts.gradle"
 }
 
 configure (aspectjProjects) {
